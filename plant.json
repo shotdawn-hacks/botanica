@@ -1,0 +1,25 @@
+{
+    "_id": "",
+    "name": "",
+    "scientific_name":"",
+    "family":"",
+    "scientific_family":"",
+    "habitats": [],
+    "regions": [],
+    "soils": [],
+    "is_global_redbook": false,
+    "sowing period": {
+        "start": "апрель",
+        "end": "апрель"
+    },
+    "harvest_period": {
+        "start": "сентябрь",
+        "end": "октябрь"
+    },
+    "chemical_composition":{
+        "name":"",
+        "value":"15%"
+    } ,
+    "medical_preparations": "",
+    "annual_demand_tons": 100
+}

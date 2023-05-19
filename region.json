@@ -1,0 +1,15 @@
+{
+    "_id": "",
+    "name": "",
+    "code": "",
+    "daylight_hours": {
+        "summer":100,
+        "winter":100,
+        "spring":100,
+        "autumn":100
+    },
+    "daylight_days": 100,
+    "redbook": ["uiid1", "uuid2"]
+    
+
+  }
