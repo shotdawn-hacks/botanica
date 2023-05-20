@@ -1,8 +1,10 @@
 package processor
 
 import (
-	"botanica/microservices/plants/server"
+	"botanica/microservices/plants/api/public"
 	"botanica/pkg/destination"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Plants struct {
@@ -13,7 +15,7 @@ type Plants struct {
 }
 
 type Config struct {
-	// TODO:
+	MongoURI string
 }
 
 func NewtDefaultPlants(cfgs Config) *Plants {
@@ -30,11 +32,31 @@ func (r *Plants) init() {
 		dest.Start()
 	}
 }
+func (r *Plants) SetMongoURI() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		ctx.Set("MongoURI", r.Mongo)
+		ctx.Next()
+	}
+}
+
+func (r *Plants) newAPI() *gin.Engine {
+	router := gin.New()
+	publicRouter := router.Group("/api/v1")
+
+	//
+	// PLANTS
+	//
+
+	plants := publicRouter.Group("/plants", r.SetMongoURI())
+	plants.GET(HTTPPlants, public.Plants)
+
+	return router
+}
 
 func (r *Plants) Start() {
 	r.init()
 
-	api := server.NewRouter()
+	api := r.newAPI()
 
 	api.Run(":" + r.Port)
 }
