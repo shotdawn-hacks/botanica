@@ -24,3 +24,7 @@ func PlantByUUID(ctx *gin.Context) {
 	// При успехе сделать ctx.JSON(http.StatusOK, foundPlantJson)
 	// При неудаче сделать ctx.AbortWithStatus(http.StatusBadRequest)
 }
+
+func UpdatePlantInformation(ctx *gin.Context) {
+
+}
