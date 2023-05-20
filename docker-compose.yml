@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  frontend:
+    container_name: react_botanica
+    image: react_botanica:1.0.0
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+    - '8000:8000'

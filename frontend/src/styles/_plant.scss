@@ -1,0 +1,22 @@
+.plant {
+  &-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-image: url('../assets/campanula_collina.jpg');
+    background-size: cover;
+    background-position-y: 45%;
+    height: 100vh;
+  }
+
+  &-container {
+    grid-column: 2 / 3;
+    padding: 50px;
+  }
+
+  &-details {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px) sepia(30%);
+    border-radius: 20px;
+    height: 100%;
+  }
+}

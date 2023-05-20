@@ -1,0 +1,236 @@
+#content-landing {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-items: center;
+  background-color: white;
+}
+
+.landing {
+  height: 100%;
+}
+
+.logo {
+  background-image: var(--logo);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 70px;
+}
+
+.top-part-search {
+  background-image: var(--field);
+  background-size: cover;
+  box-shadow: inset 0px 0px 277px 3px #4c3f37;
+  height: 105vh;
+}
+
+.landing-header {
+  width: calc(100vw - 2em);
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &-links {
+    color: var(--support-color);
+    display: flex;
+    list-style-type: none;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+  }
+
+  &-container {
+    display: flex;
+    justify-content: center;
+    height: 75px;
+    align-items: center;
+  }
+}
+
+.landing-intro {
+  position: relative;
+  height: calc(100vh - 75px);
+  // height: calc(15px * 30);
+  overflow: hidden;
+
+  &-text {
+    font-size: 3rem;
+    position: absolute;
+    width: min(100%, 700px);
+    z-index: 4;
+    top: 0;
+    bottom: 0;
+    margin: auto 50px;
+    padding: 30px;
+    height: min-content;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--main-background-color);
+    // border-radius: 30px;
+    border-radius: 3px;
+  }
+}
+
+.landing-about {
+  height: 105vh;
+  background-color: var(--main-background-color);
+  display: flex;
+  align-items: center;
+
+  &-text {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 30px;
+
+    &-header {
+      text-align: center;
+    }
+
+    & p {
+      padding-block: 10px;
+      // color: #545454;
+      color: var(--text-color);
+    }
+  }
+}
+
+.landing-features {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-container {
+    display: grid;
+    grid-template-columns: auto 40px;
+    gap: 20px;
+    align-items: center;
+    background-color: var(--main-background-color);
+    padding-inline: 30px;
+    height: 70px;
+    width: min(900px, 100vw - 100px);
+    border-radius: 30px;
+  }
+
+  &-text {
+    text-align: center;
+    padding: 20px;
+    font-size: 2rem;
+  }
+}
+
+.searchbar {
+  color: black;
+  flex: 1;
+  font-family: "Poppins";
+  height: 32px;
+  background-color: #EFEFEF;
+  border: none;
+  border-radius: 7px;
+  outline: none;
+  padding: 7px;
+}
+
+.search-results {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #1C2128;
+}
+
+.cards {
+  width: min(900px, 100vw);
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 50px;
+  grid-auto-rows: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.wide-card {
+  grid-column: span 3;
+}
+
+.landing-footer {
+  &-container {
+    display: flex;
+    justify-content: center;
+    height: 75px;
+    background: linear-gradient(
+      0.1turn,
+      var(--gradient-color-1),
+      var(--gradient-color-2) 45% 60%,
+      var(--gradient-color-3)
+    );
+    align-items: center;
+  }
+}
+
+.icon {
+  height: 30px;
+  width: 30px;
+  justify-self: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.landing-lastcall {
+  height: 100vh;
+}
+
+.card {
+  height: 300px;
+  border-radius: 30px;
+  border: 3px solid black;
+  overflow: hidden;
+  background-color: #2D333B;
+
+  &-img {
+    height: 200px;
+    border: 1px solid black;
+  }
+
+  &-title {
+    padding-inline: 10px;
+    line-height: 1em;
+  }
+
+  &-stat {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: cyan;
+  }
+
+  &-stats {
+    margin-top: 12px;
+    padding-inline: 10px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 40px;
+    gap: 15px;
+  }
+
+  &-icon {
+    height: 28px;
+    width: 28px;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+button {
+  height: min-content;
+  width: min-content;
+}

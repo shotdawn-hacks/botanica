@@ -1,0 +1,126 @@
+@mixin blurred-curves {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px) sepia(30%);
+  border-radius: 20px;
+  height: 100%;
+}
+
+.glossary {
+  &-page {
+    display: grid;
+    grid-template-columns: 5fr 11fr;
+    height: 100vh;
+  }
+
+  &-container {
+    background-image: url('../assets/campanula_collina.jpg');
+    background-size: cover;
+    background-position-y: 45%;
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-rows: 5fr 44fr 5fr;
+    grid-template-columns: 10fr 54fr 5fr;
+  }
+
+  &-search {
+    grid-column: 1 / 2;
+    background: #FCFCFC;
+    display: grid;
+    grid-template-rows: 10fr 98fr;
+    grid-template-columns: 1fr 6fr 1fr;
+  }
+
+  &-searchbar {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    border-radius: 40px;
+    border: 1px solid #282828;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    gap: 10px;
+  }
+
+  &-details {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-rows: 5fr 39fr;
+    gap: 20px;
+  }
+
+  &-chars {
+    grid-row: 1 / 2;
+    display: flex;
+    gap: 20px;
+  }
+
+  &-char {
+    @include blurred-curves;
+    flex: 1;
+    display: grid;
+    grid-template-columns: min-content auto;
+
+    &-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #888;
+    }
+  }
+
+  &-icon {
+    @include blurred-curves;
+    width: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-img {
+      height: 50px;
+      width: auto;
+      filter: invert(50%);
+    }
+  }
+
+  &-description {
+    color: white;
+    padding: 40px;
+    grid-row: 2 / 3;
+    @include blurred-curves;
+
+    &-text {
+      margin-block: 10px;
+
+      &2 {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+.icon {
+  height: 100%;
+  width: 100%;
+  color: #bbb;
+}
+
+.searchbar-button {
+  margin-top: -1px;
+  margin-right: -1px;
+  padding: 8px;
+  height: 50px;
+  width: 50px;
+  background-color: #282828;
+  border: none;
+  border-radius: 40px;
+}
+
+.searchbar-input {
+  padding: 10px 4px 10px 16px;
+  &:focus {
+    outline: 0;
+    outline-color: transparent;
+    outline-style: none;
+  }
+}
