@@ -19,9 +19,15 @@ export MONGO=mongodb:user:password@host:port
 To start services on machine simply run
 
 ```shell
-docker compose up --build -d
+docker-compose up --build -d
 ```
 
+### For content visit
+- localhost:8000/
+- localhost:8000/glossary 
+
+API:
+- localhost:9000/api/v1/plants
 ### Team
 
 shotdawn
