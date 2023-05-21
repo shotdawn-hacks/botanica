@@ -6,6 +6,7 @@
 
 Currently frontend, plants microservice, pdf-extractor
 
+![Architecture](https://github.com/shotdawn-hacks/botanica/assets/43452700/77029f6e-aa39-4477-b7d9-2b2fe23e2a91)
 
 ### How to start your own DB
 
