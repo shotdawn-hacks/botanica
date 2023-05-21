@@ -1,22 +1,32 @@
 ## Botanica
 
-> *Developing healthier future*
+> Intellectual medical herbs database
 
 ### Architecture
 
-### How to start
+Currently frontend, plants microservice, pdf-extractor
 
-To start services on one machine simply run
+### How to start your own DB
+
+You must provide mongoDB connection uri as env variable
 
 ```shell
-docker compose up
+export MONGO=mongodb:user:password@host:port
+```
+
+### How to start with our DB
+
+To start services on machine simply run
+
+```shell
+docker compose up --build -d
 ```
 
 ### Team
 
 shotdawn
 
-1. Danila Artamonov (MISIS)
-2. Tani Suksina (MISIS)
-3. Vsevolod
-4. Yana
+1. Danila Artamonov (Backend\ML, MISIS)
+2. Tani Suksina (Backend, MISIS)
+3. Vsevolod (Frontend)
+4. Yana (UX/UI)
