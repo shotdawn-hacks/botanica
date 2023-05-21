@@ -43,6 +43,7 @@ docker-compose up --build -d
 API:
 
 - localhost:9000/api/v1/plants
+GET returns all plants JSON's
 
 ### Design
 
