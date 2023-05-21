@@ -1,7 +1,9 @@
 package public
 
 import (
+	"botanica/pkg/db"
 	"context"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -10,42 +12,25 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-type Plant struct {
-	ID               string   `json:"_id"`
-	Name             string   `json:"name"`
-	ScientificName   string   `json:"scientific_name"`
-	Family           string   `json:"family"`
-	ScientificFamily string   `json:"scientific_family"`
-	Habitats         []string `json:"habitats"`
-	Regions          []any    `json:"regions"`
-	Soils            []string `json:"soils"`
-	IsGlobalRedbook  bool     `json:"is_global_redbook"`
-	Sowing           struct {
-		Start       string `json:"start"`
-		End         string `json:"end"`
-		Conditions  string `json:"conditions"`
-		Description string `json:"description"`
-	} `json:"sowing"`
-	Harvesting struct {
-		Start       string `json:"start"`
-		End         string `json:"end"`
-		Conditions  string `json:"conditions"`
-		Description string `json:"description"`
-	} `json:"harvesting"`
-	ChemicalComposition []struct {
-		Name  string `json:"name"`
-		Value string `json:"value"`
-	} `json:"chemical_composition"`
-	MedicalPreparations string `json:"medical_preparations"`
-	AnnualDemandTons    int    `json:"annual_demand_tons"`
-}
-
 const (
 	DATABASE   = "botanica"
 	COLLECTION = "plants"
+	IMAGES     = "images"
 )
 
+type Image struct {
+	ID   string `json:"_id" bson:"_id"`
+	Name string `json:"name" bson:"name"`
+}
+
+type PlantWithImage struct {
+	Plant db.Plant
+	Image string `json:"image" bson:"image"`
+}
+
 func Plants(ctx *gin.Context) {
+	// firstname := ctx.DefaultQuery("firstname", "Guest")
+	// lastname := ctx.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
 	mongoURI := ctx.GetString("MongoURI")
 	if len(mongoURI) == 0 {
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, `{"reason":"mongo uri is not exsists"}`)
@@ -59,6 +44,7 @@ func Plants(ctx *gin.Context) {
 	}
 
 	coll := client.Database(DATABASE).Collection(COLLECTION)
+	imcoll := client.Database(DATABASE).Collection(IMAGES)
 
 	cur, err := coll.Find(context.TODO(), bson.D{})
 	if err != nil {
@@ -66,7 +52,9 @@ func Plants(ctx *gin.Context) {
 		return
 	}
 
-	var allPlants []Plant
+	var allPlants []db.Plant
+
+	var allWithImage []PlantWithImage
 
 	err = cur.All(context.TODO(), &allPlants)
 	if err != nil {
@@ -74,7 +62,24 @@ func Plants(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, allPlants)
+	var img Image
+
+	for _, plant := range allPlants {
+		im := imcoll.FindOne(context.TODO(), bson.D{{"name", plant.Name}})
+		err := im.Decode(&img)
+		if err != nil {
+			log.Println(err)
+		}
+
+		p := PlantWithImage{
+			Plant: plant,
+			Image: img.ID,
+		}
+
+		allWithImage = append(allWithImage, p)
+	}
+
+	ctx.JSON(http.StatusOK, allWithImage)
 }
 
 func PlantByUUID(ctx *gin.Context) {

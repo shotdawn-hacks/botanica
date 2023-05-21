@@ -21,7 +21,8 @@ type Config struct {
 func NewtDefaultPlants(cfgs Config) *Plants {
 	c := &Plants{
 		Address: "",
-		Port:    "9010",
+		Port:    "9000",
+		Mongo:   cfgs.MongoURI,
 	}
 
 	return c
@@ -43,6 +44,10 @@ func (r *Plants) newAPI() *gin.Engine {
 	router := gin.New()
 	publicRouter := router.Group("/api/v1")
 
+	//
+	// STATIC
+	//
+	router.Static("/static", "./images")
 	//
 	// PLANTS
 	//

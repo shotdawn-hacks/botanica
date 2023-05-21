@@ -4,7 +4,7 @@ const (
 	//
 	//Plants private api
 	//
-	HTTPPlantSearch = "/search"
+	HTTPPlantSearch = "/"
 
 	// Gateway private api
 	HTTPHealth = "/health"

@@ -24,7 +24,7 @@ var gatewayCmd = &cobra.Command{
 			Plants: plantsCfg,
 		}
 
-		gatewayService := processor.NewtDefaultGateway(gatewayCfg)
+		gatewayService := processor.NewDefaultGateway(gatewayCfg)
 
 		gatewayService.Start()
 	},
