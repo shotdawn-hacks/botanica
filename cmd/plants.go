@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"botanica/microservices/plants/processor"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -24,6 +25,9 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		mongoURI, _ := cmd.Flags().GetString("mongo-uri")
 
+		if len(mongoURI) == 0 {
+			mongoURI = os.Getenv("MONGO")
+		}
 		plantsCfg = processor.Config{
 			MongoURI: mongoURI,
 		}
