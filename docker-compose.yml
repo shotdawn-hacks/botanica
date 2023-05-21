@@ -8,3 +8,14 @@ services:
       dockerfile: Dockerfile
     ports:
     - '8000:8000'
+  plants:
+    container_name: plants_botanica
+    image: plants_botanica:1.0.0
+    environment:
+       - MONGO=mongodb://botanica:botanica2023botanica@82.148.30.25:27017
+    build:
+        dockerfile: Dockerfile
+        context: .
+    ports:
+    - '9000:9000'
+    
