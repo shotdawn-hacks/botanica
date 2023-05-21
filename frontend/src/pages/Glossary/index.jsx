@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiMagnify } from '@mdi/js';
 import useTitle from '../../hooks/useTitle';
+import { useGetPlantsQuery } from '../../state/plant';
 
 export default function Glossary() {
   useTitle('Sth | Glossary');
+  const [currentPlant, setCurrentPlant] = useState({
+    name: 'Аир обыкновенный',
+    scientific_name: 'Acorus calamus L.',
+    family: 'куст',
+    sowing: {
+      start: 'апрель',
+    },
+    complexity: '35%',
+  });
+
+
+  const plants = useGetPlantsQuery();
 
   return (
     <main className="glossary-page">
@@ -27,29 +40,25 @@ export default function Glossary() {
           <h3>Активные в-ва</h3>
           <h3>Группы лекарств</h3>
         </div>
-        <div className="glossary-searchresults">
-          <div className="searchresult-card">
-            <div className="img-icon"/>
-            <div className="plant-label">
-              <p>Name</p>
-            </div>
+        {plants.isFetching || plants.isLoading ? (
+          <div />
+        ) : (
+          <div className="glossary-searchresults">
+            {plants.map((plant) => (
+              <div className="searchresult-card" key={plant._id} onClick={() => setCurrentPlant(plant)}>
+                <div
+                  className="img-icon"
+                  style={{
+                    backgroundImage: `http://localhost:9000/static/${plant.image}.jpg`,
+                  }}
+                />
+                <div className="plant-label">
+                  <p>plant.name</p>
+                </div>
+              </div>
+            ))}
           </div>
-
-          <div className="searchresult-card">
-            <div className="img-icon"/>
-            <div className="plant-label">
-              <p>Name</p>
-            </div>
-          </div>
-
-          <div className="searchresult-card">
-            <div className="img-icon"/>
-            <div className="plant-label">
-              <p>Name</p>
-            </div>
-          </div>
-
-        </div>
+        )}
       </div>
       <div className="glossary-container">
         <div className="glossary-details">
@@ -61,7 +70,7 @@ export default function Glossary() {
                   className="glossary-icon-img"
                 />
               </div>
-              <div className="glossary-char-text">куст</div>
+              <div className="glossary-char-text">{currentPlant.family}</div>
             </div>
             <div />
             <div className="glossary-char">
@@ -71,19 +80,19 @@ export default function Glossary() {
                   className="glossary-icon-img"
                 />
               </div>
-              <div className="glossary-char-text">апрель</div>
+              <div className="glossary-char-text">{currentPlant.sowing.start}</div>
             </div>
             <div />
             <div className="glossary-char">
               <div className="glossary-icon"></div>
-              <div className="glossary-char-text">35%</div>
+              <div className="glossary-char-text">{currentPlant.complexity}</div>
             </div>
           </div>
           <div className="glossary-description">
             <h2 className="glossary-description-text2">
-              Аир обыкновенный
+              {currentPlant.name}
               <em style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
-                (Acorus calamus L.)
+                ({currentPlant.scientific_name})
               </em>
             </h2>
             <h3 className="glossary-description-text">Обитание</h3>
