@@ -18,7 +18,7 @@
     background-position-y: 45%;
     grid-column: 2 / 3;
     display: grid;
-    grid-template-rows: 5fr 44fr 5fr;
+    grid-template-rows: 75px 44fr 5fr;
     grid-template-columns: 10fr 54fr 5fr;
   }
 
@@ -26,18 +26,33 @@
     grid-column: 1 / 2;
     background: #FCFCFC;
     display: grid;
-    grid-template-rows: 10fr 98fr;
+    grid-template-rows: 75px 300px 48fr;
     grid-template-columns: 1fr 6fr 1fr;
+  }
+
+  &-filters {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    box-shadow: 0 0 0 1pt #282828;
+    border-radius: 25px;
+    padding-top: 55px;
+    padding-inline: 12px;
+    line-height: 2.3em;
+  }
+
+  &-searchresults {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
   }
 
   &-searchbar {
     grid-row: 2 / 3;
     grid-column: 2 / 3;
     border-radius: 40px;
-    border: 1px solid #282828;
+    box-shadow: 0 0 0 1pt #282828;
     height: 50px;
     display: grid;
-    grid-template-columns: 1fr 50px;
+    grid-template-columns: 0px 1fr 50px;
     gap: 10px;
   }
 
@@ -45,26 +60,24 @@
     grid-row: 2 / 3;
     grid-column: 2 / 3;
     display: grid;
-    grid-template-rows: 5fr 39fr;
-    gap: 20px;
+    grid-template-rows: 5fr 3fr 36fr;
   }
 
   &-chars {
     grid-row: 1 / 2;
-    display: flex;
-    gap: 20px;
+    display: grid;
+    // 54 fr
+    grid-template-columns: 16fr 3fr 16fr 3fr 16fr;
   }
 
   &-char {
     @include blurred-curves;
-    flex: 1;
     display: grid;
-    grid-template-columns: min-content auto;
+    grid-template-columns: 5fr 11fr;
 
     &-text {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-self: center;
+      align-self: center;
       color: #888;
     }
   }
@@ -86,7 +99,7 @@
   &-description {
     color: white;
     padding: 40px;
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
     @include blurred-curves;
 
     &-text {
@@ -109,18 +122,56 @@
   margin-top: -1px;
   margin-right: -1px;
   padding: 8px;
-  height: 50px;
-  width: 50px;
+  height: 52px;
+  width: 52px;
   background-color: #282828;
   border: none;
   border-radius: 40px;
 }
 
+.searchbar-filter-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+  height: 50px;
+  width: 50px;
+}
+
 .searchbar-input {
-  padding: 10px 4px 10px 16px;
+  padding: 10px 4px 10px 0px;
+  margin-left: 52px;
   &:focus {
     outline: 0;
     outline-color: transparent;
     outline-style: none;
   }
+}
+
+.filter-img {
+  height: 40px;
+  width: 40px;
+}
+
+.searchresult-card {
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-template-rows: 100px;
+  gap: 10px;
+  padding: 15px;
+}
+
+.img-icon {
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  background-image: url('../assets/stock_flower.jpg');
+  background-size: cover;
+  background-position-x: -18px;
+}
+
+.plant-label {
+  display: grid;
+  justify-content: left;
+  align-items: center;
 }
