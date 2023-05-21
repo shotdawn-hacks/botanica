@@ -7,7 +7,11 @@ import (
 )
 
 func Search(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, ctx.MustGet("dst"))
-}
+	_, ok := ctx.Get("dst")
+	if !ok {
+		ctx.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
 
-//TODO: Написать хэндлер, который возвращает по айди растения его полный json
+	// iDst := dst.(processor.Gateway)
+}

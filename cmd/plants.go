@@ -4,8 +4,12 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"botanica/microservices/plants/processor"
+
 	"github.com/spf13/cobra"
 )
+
+var plantsCfg processor.Config
 
 // plantsCmd represents the plants command
 var plantsCmd = &cobra.Command{
@@ -18,13 +22,21 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		// TODO:Insert here
+		mongoURI, _ := cmd.Flags().GetString("mongo-uri")
+
+		plantsCfg = processor.Config{
+			MongoURI: mongoURI,
+		}
+
+		plantsService := processor.NewtDefaultPlants(plantsCfg)
+		plantsService.Start()
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(plantsCmd)
 
+	plantsCmd.PersistentFlags().String("mongo-uri", "", "URI for mongo connection")
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

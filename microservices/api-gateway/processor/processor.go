@@ -20,10 +20,10 @@ type Config struct {
 	Plants *destination.Config
 }
 
-func NewtDefaultGateway(cfgs Config) *Gateway {
+func NewDefaultGateway(cfgs Config) *Gateway {
 	c := &Gateway{
 		Address: "",
-		Port:    "9000",
+		Port:    "9010",
 	}
 
 	return c
